@@ -1,8 +1,6 @@
 import React from "react";
-import {AppBar, fade, Button, IconButton, makeStyles, Typography} from "@material-ui/core";
+import {AppBar, Button, IconButton, makeStyles, Typography} from "@material-ui/core";
 import Toolbar from '@material-ui/core/Toolbar';
-import MenuIcon from '@material-ui/icons/Menu'
-import SearchIcon from '@material-ui/icons/Search';
 import {Avatar} from "@material-ui/core";
 
 const useStyle = makeStyles(theme => ({

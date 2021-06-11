@@ -1,7 +1,7 @@
 import React from "react";
 import {Container, Typography, makeStyles, Grid, Paper, Box} from "@material-ui/core";
 import CustomizedTables from "./Tablaciudades";
-
+import Ciudades from "./ciudades"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +70,7 @@ const Contenido = () => {
                             <Grid item>
                                 <Paper className={classes.paper}>
                                     <Typography>
-                                        Hola Mundo
+                                        <Ciudades />
                                     </Typography>
                                 </Paper>
                             </Grid>
