@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         textAlign:"center",
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "#93ADD9",
     },
 }));
 

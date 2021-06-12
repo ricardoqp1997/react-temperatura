@@ -25,8 +25,9 @@ const Estadisticas = () => {
                     textAlign={'center'}
                 >
 
-                    Bienvenido, toda la información de temperatura y humedad
+                     <h2>  Bienvenido, toda la información de temperatura y humedad
                     de las principales ciudades del país, A la mano
+                    </h2>
                 </Box>
                 <Box m={10}>
                     <div className={classes.root}>
