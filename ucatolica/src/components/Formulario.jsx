@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Formulario = ({busqueda, guardarBusqueda, guardarConsultar}) => {
+const Formulario = ({busqueda, guardarBusqueda, guardarConsultar, guardarAlmacenar}) => {
   const classes = useStyles();
   const [error, guardarError] = useState(false);
   const { ciudad } = busqueda;
@@ -29,17 +29,14 @@ const Formulario = ({busqueda, guardarBusqueda, guardarConsultar}) => {
   }
   
 
-  // cuando el usuario da submit al formulario
     const handleSubmit = e => {
       e.preventDefault();
-      // validar 
       if(ciudad.trim() === '') {
         guardarError(true);
         return;
       }
       guardarError(false);
       guardarConsultar(true);
-
     }
     
 
@@ -71,6 +68,7 @@ Formulario.propTypes = {
   busqueda : PropTypes.object.isRequired,
   guardarBusqueda : PropTypes.func.isRequired,
   guardarConsultar : PropTypes.func.isRequired,
+  guardarAlmacenar:  PropTypes.func.isRequired,
 }
  
 export default Formulario;

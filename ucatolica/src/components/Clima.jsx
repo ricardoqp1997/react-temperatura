@@ -16,8 +16,6 @@ const Clima = ({resultado}) => {
             { parseFloat(main.temp-kelvin, 10).toFixed() }
             <span> &#x2103; </span>
             </h1>
-
-
             <h2> Su humedad es de:  </h2>
             <h1>
             { parseFloat(main.humidity).toFixed()}

@@ -1,38 +1,38 @@
 import React from 'react';
-import {Line} from 'react-chartjs-2';
 import '../assets/css/graficas.css';
+import MaterialTable from 'material-table';
 
 
 function Grafics(props){
 
-    const [conjunto, setConjunto] = React.useState([])
+    const [data, setData] = React.useState([])
+
+    const columns = [
+        { title: 'Fecha', field: 'fecha_registro'},
+        { title: 'Ciudad', field: 'ciudad' },
+        { title: 'País', field: 'pais' },
+        { title: 'Temperatura', field: 'temperatura' },
+        { title: 'Humedad', field: 'humedad' }
+    ];
 
     React.useEffect(() => {
-        //console.log('useEffect')
         obtenerDatos()
     }, [])
 
     const obtenerDatos = async () => {
         
-        const data = await fetch('https://backend-temperatura.herokuapp.com/api/temperatura-humedad/')
-        const temhum = await data.json()
-        console.log(temhum)
-        setConjunto(temhum)
+        const data_hist = await fetch('http://backend-temperatura.herokuapp.com/api/temperatura-humedad/')
+        const json_jist = await data_hist.json()
+        console.log(json_jist)
+        setData(json_jist)
     }
-
     
-    const data = {
-        labels:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre", "Octubre", "Noviembre", "Diciembre"],
-
-        //datasets:[{
-          //      data:[23, 24, 25, 643, 23423, 4, 3, 7, 34, 3, 7, 54],
-       // }
-    //]
-    }
     return (
-        <div className="containerGrafica">
-            <Line data={data}/>
-        </div>
+            <MaterialTable
+            title="Grafica"
+            data={data}
+            columns={columns}
+            />
     );
 }
 
