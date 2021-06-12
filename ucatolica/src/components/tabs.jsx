@@ -74,6 +74,7 @@ export default function ScrollableTabsButtonAuto() {
                     <Tab label="Inicio" {...a11yProps(0)} />
                     <Tab label="Temperatura y humedad" {...a11yProps(1)} />
                     <Tab label="Estadisticas" {...a11yProps(2)} />
+                    <Tab label="PoweBI Analytics" {...a11yProps(3)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
@@ -85,7 +86,9 @@ export default function ScrollableTabsButtonAuto() {
             <TabPanel value={value} index={2}>
                 Hijueputa
             </TabPanel>
-
+            <TabPanel value={value} index={3}>
+                PowerBI
+            </TabPanel>
         </div>
     );
 }
