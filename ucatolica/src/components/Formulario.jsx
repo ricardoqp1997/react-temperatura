@@ -82,7 +82,6 @@ const Formulario = ({resultado, busqueda, guardarBusqueda, guardarConsultar}) =>
         })
 
     }
-    
 
   return ( 
     <form
