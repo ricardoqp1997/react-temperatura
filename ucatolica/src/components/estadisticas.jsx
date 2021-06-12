@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import {Container, Typography, makeStyles, Grid, Paper, Box} from "@material-ui/core";
-import Ciudades from "./ciudades"
+import Grafics from "./GraficasMin";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Contenido = () => {
+const Estadisticas = () => {
     const classes = useStyles();
     return (
         <div>
@@ -24,30 +24,31 @@ const Contenido = () => {
                     m={10}
                     textAlign={'center'}
                 >
+
                     Bienvenido, toda la información de temperatura y humedad
                     de las principales ciudades del país, A la mano
                 </Box>
                 <Box m={10}>
                     <div className={classes.root}>
                         <Grid container spacing={3}>
-                            <Grid item xs={3}>
+                            <Grid item xs={4}>
                                 <Paper className={classes.paper}>
                                     <Typography>
-                                        Hola Mundo
+                                        <Grafics />
                                     </Typography>
                                 </Paper>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={4}>
                                 <Paper className={classes.paper}>
                                     <Typography>
-                                        Hola Mundo
+                                    Promedio temperatura y humedad por hora
                                     </Typography>
                                 </Paper>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={4}>
                                 <Paper className={classes.paper}>
                                     <Typography>
-                                        Hola Mundo
+                                    Promedio temperatura y humedad por dia
                                     </Typography>
                                 </Paper>
                             </Grid>
@@ -57,17 +58,12 @@ const Contenido = () => {
                 <Box m={10}>
                     <div className={classes.root}>
                         <Grid container spacing={3}>
-                            <Grid item>
+                            <Grid item xs={12}>
                                 <Paper className={classes.paper}>
                                     <Typography>
-                                
-                                        <Ciudades />
+                                    Temperatura y humedad
                                     </Typography>
                                 </Paper>
-                            </Grid>
-                            <Grid item>
-                            </Grid>
-                            <Grid item >
                             </Grid>
                         </Grid>
                     </div>
@@ -77,4 +73,4 @@ const Contenido = () => {
     )
 }
 
-export default Contenido
+export default Estadisticas

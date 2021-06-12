@@ -1,6 +1,3 @@
-import { Table, TableContainer } from '@material-ui/core'
-import { ViewColumnSharp } from '@material-ui/icons'
-import { object } from 'prop-types'
 import React from 'react'
 
 
@@ -27,7 +24,7 @@ const Ciudades = () => {
             <ul>
                 {
                     conjunto.map(item => (
-                        <li key="item.id">{item.nombre_ciudad}</li>
+                        <li key="item.pais">{item.nombre_ciudad}</li>
                     ))
                 }
             </ul>

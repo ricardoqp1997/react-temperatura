@@ -1,4 +1,3 @@
-import { SettingsOutlined } from '@material-ui/icons';
 import React from 'react';
 import { useState } from 'react';
 
@@ -15,7 +14,7 @@ const handleSubmit =(e) => {
 
     setIsPending(true);
 
-    fetch('https://backend-temperatura.herokuapp.com/api/ciudad/?format=api', {
+    fetch('https://backend-temperatura.herokuapp.com/api/ciudad/', {
         method: 'POST', 
         header: {"Content-Type": "application/json"},
         body: JSON.stringify(nuevodato)
@@ -45,7 +44,7 @@ return (
                 <br />
                 <input 
                         required
-                        type="text" 
+                        type="number" 
                         value={temperatura}
                         onChange={(e) => setTemperatura(e.target.value)}
                 />
@@ -54,7 +53,7 @@ return (
                 <br />
                 <input  
                         required
-                        type="text" 
+                        type="number" 
                         value={humedad}
                         onChange={(e) => setHumedad(e.target.value)}
                 />

@@ -8,7 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Contenido from "./contenido";
 import TemperaturaHumedad from './temperaturahumedad';
-
+import PowerBI from './powerbi';
+import Estadisticas from './estadisticas';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -84,10 +85,10 @@ export default function ScrollableTabsButtonAuto() {
                 <TemperaturaHumedad />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Hijueputa
+                <Estadisticas />
             </TabPanel>
             <TabPanel value={value} index={3}>
-                PowerBI
+                <PowerBI />
             </TabPanel>
         </div>
     );

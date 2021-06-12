@@ -1,6 +1,5 @@
 import React from "react";
 import {Container, Typography, makeStyles, Grid, Paper, Box} from "@material-ui/core";
-import Ciudades from "./ciudades"
 import Crear from "./create"
 
 const useStyles = makeStyles((theme) => ({
