@@ -1,6 +1,7 @@
 import React from "react";
 import {Container, Typography, makeStyles, Grid, Paper, Box} from "@material-ui/core";
 import Crear from "./create"
+import Historico from "./hitorico"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 const TemperaturaHumedad = () => {
+
     const classes = useStyles();
 
     return (
@@ -32,17 +34,17 @@ const TemperaturaHumedad = () => {
                 <Box m={10}>
                     <div className={classes.root}>
                         <Grid container spacing={3}>
-                            <Grid item>
+                            <Grid item xs={4}>
                                 <Paper className={classes.paper}>
                                     <Typography>
                                         <Crear />
                                     </Typography>
                                 </Paper>
                             </Grid>
-                            <Grid item >
+                            <Grid item xs={8}>
                                 <Paper className={classes.paper}>
-                                    <Typography>
-                                        Hola Mundo
+                                    <Typography >
+                                        <Historico/>
                                     </Typography>
                                 </Paper>
                             </Grid>
