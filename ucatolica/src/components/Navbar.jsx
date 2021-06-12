@@ -2,8 +2,6 @@ import React from "react";
 import {AppBar, Button, IconButton, makeStyles, Typography} from "@material-ui/core";
 import Toolbar from '@material-ui/core/Toolbar';
 import {Avatar} from "@material-ui/core";
-import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from "@material-ui/icons/Search";
 import { fade } from "@material-ui/core/styles";
 
 const useStyle = makeStyles(theme => ({
@@ -62,14 +60,12 @@ const useStyle = makeStyles(theme => ({
           width: "500px"
         }
       }
-
 }))
 
 const Navbar = () => {
     const classes = useStyle()
     return (
         <div className={classes.grow}>
-
           <AppBar position="static">
             <Toolbar>
             <IconButton color={"inherit"}
@@ -77,26 +73,9 @@ const Navbar = () => {
                           className={classes.menuButton}>
                   <Avatar alt="Remy Sharp" src='temperatura.png'/>
               </IconButton>
-              
               <Typography variant='h6' className={classes.title}>
                   Monitor de temperatura
               </Typography>
-
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <InputBase
-                  placeholder="Ingrese ciudad"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput
-                  }}
-                  inputProps={{ "aria-label": "search" }}
-                />
-              </div>
-              <div className={classes.grow} />
-              <div className={classes.sectionMobile}></div>
             </Toolbar>
           </AppBar>
         </div>

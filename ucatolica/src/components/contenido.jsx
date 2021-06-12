@@ -1,6 +1,8 @@
 import React from "react";
 import {Container, Typography, makeStyles, Grid, Paper, Box} from "@material-ui/core";
 import Ciudades from "./ciudades"
+import Searchis from "./search";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,21 +32,34 @@ const Contenido = () => {
                 <Box m={10}>
                     <div className={classes.root}>
                         <Grid container spacing={3}>
-                            <Grid item xs={3}>
+                            <Grid item xs={12}>
+                                <Paper className={classes.paper}>
+                                    <Typography>
+                                        <Searchis />
+                                    </Typography>
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                    </div>
+                </Box>
+                <Box m={10}>
+                    <div className={classes.root}>
+                        <Grid container spacing={3}>
+                            <Grid item xs={4}>
                                 <Paper className={classes.paper}>
                                     <Typography>
                                         Hola Mundo
                                     </Typography>
                                 </Paper>
                             </Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={4}>
                                 <Paper className={classes.paper}>
                                     <Typography>
                                         Hola Mundo
                                     </Typography>
                                 </Paper>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={4}>
                                 <Paper className={classes.paper}>
                                     <Typography>
                                         Hola Mundo
