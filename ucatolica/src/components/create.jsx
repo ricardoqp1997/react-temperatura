@@ -6,49 +6,61 @@ const Crear = () => {
 const [ciudad, setCiudad] = useState('');
 const [temperatura, setTemperatura] = useState('');
 const [humedad, setHumedad] = useState('');
+const [isPendign, setIsPending] = useState(false);
 
 
 const handleSubmit =(e) => {
     e.preventDefault();
+    const nuevodato = {ciudad, temperatura, humedad};
+
+    setIsPending(true);
 
     fetch('https://backend-temperatura.herokuapp.com/api/ciudad/?format=api', {
         method: 'POST', 
-        header: {"Content-Type": "applicatiion/json"},
-        body: JSON.stringify([])
+        header: {"Content-Type": "application/json"},
+        body: JSON.stringify(nuevodato)
 
     }). then(() => {
-        console.log('Nueva ciudad agregada');
+        console.log('Nuevo registro agregado');
+        setIsPending(false);
     })
 }
 
 return (
         <div className="create">
             <form onSubmit={handleSubmit}>
-                <label> Ingresar nueva temperatura:</label>
+                <label> Ingresar nueva temperatura</label>
                 <hr />
                 <br />
                 <label> Ciudad </label>
                 <br />
-                <input type="text" 
+                <input 
+                        required
+                        type="text" 
                         value={ciudad}
                         onChange={(e) => setCiudad(e.target.value)}
                 />
                 <br />
                 <label> Temperatura</label>
                 <br />
-                <input type="text" 
+                <input 
+                        required
+                        type="text" 
                         value={temperatura}
                         onChange={(e) => setTemperatura(e.target.value)}
                 />
                 <br />
                 <label> Humedad</label>
                 <br />
-                <input type="text" 
+                <input  
+                        required
+                        type="text" 
                         value={humedad}
                         onChange={(e) => setHumedad(e.target.value)}
                 />
                 <br />
-                <button>asdlkjasldkj</button>
+                { !isPendign && <button>Registrar</button>}
+                { isPendign && <button>Registrando..</button>}
                 </form>
         </div>
 )
