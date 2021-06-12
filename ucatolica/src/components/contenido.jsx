@@ -60,7 +60,6 @@ const Contenido = () => {
                             <Grid item>
                                 <Paper className={classes.paper}>
                                     <Typography>
-                                
                                         <Ciudades />
                                     </Typography>
                                 </Paper>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 const Crear = () => {
 const [ciudad, setCiudad] = useState('');
+const [pais, setPais] = useState('');
 const [temperatura, setTemperatura] = useState('');
 const [humedad, setHumedad] = useState('');
 const [isPendign, setIsPending] = useState(false);
@@ -10,12 +11,12 @@ const [isPendign, setIsPending] = useState(false);
 
 const handleSubmit =(e) => {
     e.preventDefault();
-    const nuevodato = {ciudad, temperatura, humedad};
+    const nuevodato = {ciudad, pais, temperatura, humedad};
 
     setIsPending(true);
-
-    fetch('https://backend-temperatura.herokuapp.com/api/ciudad/', {
-        method: 'POST', 
+        
+    fetch('https://backend-temperatura.herokuapp.com/api/temperatura-humedad/', {
+        method: 'PUT', 
         header: {"Content-Type": "application/json"},
         body: JSON.stringify(nuevodato)
 
@@ -24,6 +25,7 @@ const handleSubmit =(e) => {
         setIsPending(false);
     })
 }
+
 
 return (
         <div className="create">
@@ -38,6 +40,15 @@ return (
                         type="text" 
                         value={ciudad}
                         onChange={(e) => setCiudad(e.target.value)}
+                />
+                <br />
+                <label> Pais </label>
+                <br />
+                <input 
+                        required
+                        type="text" 
+                        value={pais}
+                        onChange={(e) => setPais(e.target.value)}
                 />
                 <br />
                 <label> Temperatura</label>
