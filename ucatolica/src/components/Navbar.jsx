@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import {Avatar} from "@material-ui/core";
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
-import { fade,  } from "@material-ui/core/styles";
+import { fade } from "@material-ui/core/styles";
 
 const useStyle = makeStyles(theme => ({
     offset: theme.mixins.toolbar,

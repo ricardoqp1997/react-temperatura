@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Contenido from "./contenido";
+import TemperaturaHumedad from './temperaturahumedad';
 
 
 function TabPanel(props) {
@@ -79,10 +80,10 @@ export default function ScrollableTabsButtonAuto() {
                 <Contenido />
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                <TemperaturaHumedad />
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                Hijueputa
             </TabPanel>
 
         </div>

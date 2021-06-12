@@ -1,6 +1,5 @@
 import React from "react";
 import {Container, Typography, makeStyles, Grid, Paper, Box} from "@material-ui/core";
-import DataTable from "./Tablaciudades";
 import Ciudades from "./ciudades"
 import Crear from "./create"
 
@@ -15,8 +14,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Contenido = () => {
+
+const TemperaturaHumedad = () => {
     const classes = useStyles();
+
     return (
         <div>
             <Container fixed>
@@ -32,51 +33,27 @@ const Contenido = () => {
                 <Box m={10}>
                     <div className={classes.root}>
                         <Grid container spacing={3}>
-                            <Grid item xs={3}>
-                                <Paper className={classes.paper}>
-                                    <Typography>
-                                        Hola Mundo
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <Paper className={classes.paper}>
-                                    <Typography>
-                                        Hola Mundo
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Paper className={classes.paper}>
-                                    <Typography>
-                                        Hola Mundo
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    </div>
-                </Box>
-                <Box m={10}>
-                    <div className={classes.root}>
-                        <Grid container spacing={3}>
                             <Grid item>
                                 <Paper className={classes.paper}>
                                     <Typography>
-                                
-                                        <Ciudades />
+                                        <Crear />
                                     </Typography>
                                 </Paper>
-                            </Grid>
-                            <Grid item>
                             </Grid>
                             <Grid item >
+                                <Paper className={classes.paper}>
+                                    <Typography>
+                                        Hola Mundo
+                                    </Typography>
+                                </Paper>
                             </Grid>
                         </Grid>
                     </div>
                 </Box>
             </Container>
         </div>
+
     )
 }
 
-export default Contenido
+export default TemperaturaHumedad
