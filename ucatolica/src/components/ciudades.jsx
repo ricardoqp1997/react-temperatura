@@ -14,7 +14,7 @@ const Ciudades = () => {
         
         const data = await fetch('https://backend-temperatura.herokuapp.com/api/ciudad/')
         const ciuda = await data.json()
-        //console.log(ciuda)
+        console.log(ciuda)
         setConjunto(ciuda)
     }
 
@@ -24,7 +24,7 @@ const Ciudades = () => {
             <ul>
                 {
                     conjunto.map(item => (
-                        <li key="item.pais">{item.nombre_ciudad}</li>
+                        <li key="item.pais">Pais: {item.pais} Ciudad:{item.nombre_ciudad}</li>
                     ))
                 }
             </ul>
