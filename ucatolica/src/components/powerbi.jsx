@@ -11,7 +11,6 @@ const PowerBI = () => {
             allowFullScreen="true">
                 
             </iframe>
-
         </div>
     )
 }

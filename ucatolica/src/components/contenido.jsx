@@ -32,30 +32,21 @@ const Contenido = () => {
                 </Box>
                 <Box m={10}>
                     <div className={classes.root}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12}>
-                                <Paper className={classes.paper}>
-                                    <Typography>
-                                        <Searchis />
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    </div>
-                </Box>
-                <Box m={10}>
-                    <div className={classes.root}>
-                        <Grid container spacing={9}>
-                            <Grid item xs={9}>
+
+                        <Grid container spacing={2}>
+                            <Grid item xs={4}>
                                 <Paper className={classes.paper}>
                                     <Typography>
                                         <Ciudades />
                                     </Typography>
                                 </Paper>
                             </Grid>
-                            <Grid item>
-                            </Grid>
-                            <Grid item >
+                            <Grid item xs={8}>
+                                <Paper className={classes.paper}>
+                                    <Typography>
+                                        <Searchis />
+                                    </Typography>
+                                </Paper>
                             </Grid>
                         </Grid>
                     </div>
