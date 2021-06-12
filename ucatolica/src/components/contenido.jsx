@@ -1,6 +1,6 @@
 import React from "react";
 import {Container, Typography, makeStyles, Grid, Paper, Box} from "@material-ui/core";
-import CustomizedTables from "./Tablaciudades";
+import DataTable from "./Tablaciudades";
 import Ciudades from "./ciudades"
 
 
@@ -65,7 +65,7 @@ const Contenido = () => {
                     <div className={classes.root}>
                         <Grid container spacing={3}>
                             <Grid item>
-                                <CustomizedTables />
+                                
                             </Grid>
                             <Grid item>
                                 <Paper className={classes.paper}>

@@ -1,25 +1,38 @@
-import React from 'react';
-
+import { Table, TableContainer } from '@material-ui/core'
+import { ViewColumnSharp } from '@material-ui/icons'
+import { object } from 'prop-types'
+import React from 'react'
 
 
 const Ciudades = () => {
-    const datos = [
-        {id:1, nombre: 'ReactJS'},
-        {id:2, nombre: 'VUE'},
-        {id:3, nombre: 'Angujar'},
-    ]
 
-    const [ciudades, setCiudades] = React.useState(null)
+    const [conjunto, setConjunto] = React.useState([])
 
     React.useEffect(() => {
-        console.log('useEffect')
-        setCiudades(datos)
+        //console.log('useEffect')
+        obtenerDatos()
     }, [])
 
+    const obtenerDatos = async () => {
 
-    return(
+        const data = await fetch('https://backend-temperatura.herokuapp.com/api/ciudad/')
+        const ciuda = await data.json()
+        //console.log(ciuda)
+        setConjunto(ciuda)
+    }
+
+    return (
         <div>
-            <h1> Ciudades</h1>
+            <h1>Ciudades</h1>
+            <ul>
+                {
+                    conjunto.map(item => (
+                        <li key="item.id">{item.nombre_ciudad}-{item.pais}</li>
+                    ))
+                }
+            </ul>
+
+            
         </div>
     )
 }
