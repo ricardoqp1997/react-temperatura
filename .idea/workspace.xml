@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="246ed114-d476-4b33-ad83-7ec96d42c59a" name="Default Changelist" comment="Registro en base de datos por medio de busqueda">
+    <list default="true" id="246ed114-d476-4b33-ad83-7ec96d42c59a" name="Default Changelist" comment="Registro en base de datos por medio de busqueda 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ucatolica/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ucatolica/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ucatolica/src/components/Clima.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/src/components/Clima.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ucatolica/src/components/Formulario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/src/components/Formulario.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ucatolica/src/components/create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/src/components/create.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ucatolica/src/components/search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/src/components/search.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +75,7 @@
       <workItem from="1623388852982" duration="8000" />
       <workItem from="1623388903182" duration="84000" />
       <workItem from="1623447297259" duration="205000" />
-      <workItem from="1623447517676" duration="38062000" />
+      <workItem from="1623447517676" duration="39302000" />
     </task>
     <task id="LOCAL-00001" summary="Correxión de formulario POST">
       <created>1623479470577</created>
@@ -111,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623520110671</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Registro en base de datos por medio de busqueda 1">
+      <created>1623520340760</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1623520340760</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +134,7 @@
     <MESSAGE value="Se agrega tabla de historico de temperaturas" />
     <MESSAGE value="modificacion formulario de registro de ciudades" />
     <MESSAGE value="Registro en base de datos por medio de busqueda" />
-    <option name="LAST_COMMIT_MESSAGE" value="Registro en base de datos por medio de busqueda" />
+    <MESSAGE value="Registro en base de datos por medio de busqueda 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Registro en base de datos por medio de busqueda 1" />
   </component>
 </project>

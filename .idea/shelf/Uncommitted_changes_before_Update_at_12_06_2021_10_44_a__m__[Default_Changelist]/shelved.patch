@@ -1,0 +1,251 @@
+Index: ucatolica/src/components/create.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\r\nimport { useState } from 'react';\r\n\r\nconst Crear = () => {\r\n\r\n    const [ciudad, setCiudad] = useState('');\r\n    const [pais, setPais] = useState('');\r\n    const [temperatura, setTemperatura] = useState('');\r\n    const [humedad, setHumedad] = useState('');\r\n    const [isPendign, setIsPending] = useState(false);\r\n\r\n\r\n    const handleSubmit =(e) => {\r\n        e.preventDefault();\r\n        const nuevodato = {ciudad, pais, temperatura, humedad};\r\n        console.log(nuevodato)\r\n\r\n        setIsPending(true);\r\n\r\n        fetch('https://backend-temperatura.herokuapp.com/api/temperatura-humedad/', {\r\n            method: 'POST',\r\n            headers: {\r\n                \"Content-Type\": \"application/json;charset=UTF-8\"\r\n            },\r\n            body: JSON.stringify(nuevodato)\r\n\r\n        }). then(() => {\r\n            console.log('Nuevo registro agregado');\r\n            setIsPending(false);\r\n        })\r\n    }\r\n\r\n\r\n    return (\r\n            <div className=\"create\">\r\n                <form onSubmit={handleSubmit}>\r\n                    <label> Ingresar nueva temperatura</label>\r\n                    <hr />\r\n                    <br />\r\n                    <label> Ciudad </label>\r\n                    <br />\r\n                    <input\r\n                            required\r\n                            type=\"text\"\r\n                            value={ciudad}\r\n                            onChange={(e) => setCiudad(e.target.value)}\r\n                    />\r\n                    <br />\r\n                    <label> Pais </label>\r\n                    <br />\r\n                    <input\r\n                            required\r\n                            type=\"text\"\r\n                            value={pais}\r\n                            onChange={(e) => setPais(e.target.value)}\r\n                    />\r\n                    <br />\r\n                    <label> Temperatura</label>\r\n                    <br />\r\n                    <input\r\n                            required\r\n                            type=\"number\"\r\n                            value={temperatura}\r\n                            onChange={(e) => setTemperatura(parseFloat(e.target.value))}\r\n                    />\r\n                    <br />\r\n                    <label> Humedad</label>\r\n                    <br />\r\n                    <input\r\n                            required\r\n                            type=\"number\"\r\n                            value={humedad}\r\n                            onChange={(e) => setHumedad(parseFloat(e.target.value))}\r\n                    />\r\n                    <br />\r\n                    { !isPendign && <button>Registrar</button>}\r\n                    { isPendign && <button>Registrando..</button>}\r\n                    </form>\r\n            </div>\r\n    )\r\n}\r\n\r\n\r\n\r\nexport default Crear
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ucatolica/src/components/create.jsx b/ucatolica/src/components/create.jsx
+--- a/ucatolica/src/components/create.jsx	(revision d4c81116eb5668d5d0803661f2be7734ecf1e413)
++++ b/ucatolica/src/components/create.jsx	(date 1623512399956)
+@@ -1,14 +1,35 @@
+ import React from 'react';
+ import { useState } from 'react';
++import { makeStyles } from '@material-ui/core/styles';
++import { Container, FormControl, Input, InputLabel , FormHelperText, ValidatorForm, MenuItem, Select, Button, Grid, Snackbar } from '@material-ui/core';
++import MuiAlert from '@material-ui/lab/Alert';
+ 
+ const Crear = () => {
+ 
++    const useStyles = makeStyles((theme) => ({
++        formControl: {
++            margin: theme.spacing(1),
++            minWidth: 240,
++        },
++    }));
++
++    function Alert(props) {
++        return <MuiAlert elevation={6} variant="filled" {...props} />;
++    }
++
++    const classes = useStyles();
++    const [age, setAge] = React.useState('');
++
++    const handleChange = (event) => {
++        setAge(event.target.value);
++    };
++
+     const [ciudad, setCiudad] = useState('');
+     const [pais, setPais] = useState('');
+     const [temperatura, setTemperatura] = useState('');
+     const [humedad, setHumedad] = useState('');
+     const [isPendign, setIsPending] = useState(false);
+-
++    const [open, setOpen] = React.useState(false);
+ 
+     const handleSubmit =(e) => {
+         e.preventDefault();
+@@ -30,11 +51,23 @@
+         })
+     }
+ 
++    const handleClick = () => {
++        setOpen(true);
++    };
++
++    const handleClose = (event, reason) => {
++        if (reason === 'clickaway') {
++            return;
++        }
++
++        setOpen(false);
++    };
+ 
+     return (
+             <div className="create">
+                 <form onSubmit={handleSubmit}>
+-                    <label> Ingresar nueva temperatura</label>
++                    { !isPendign && <label>Registrar nueva temperatura</label>}
++                        { isPendign && <label>Registrando nueva temperatura</label>}
+                     <hr />
+                     <br />
+                     <label> Ciudad </label>
+@@ -76,6 +109,71 @@
+                     { !isPendign && <button>Registrar</button>}
+                     { isPendign && <button>Registrando..</button>}
+                     </form>
++                <Container maxWidth='md'>
++
++                    <Grid container>
++                       <Grid item md={12}>
++                           <FormControl className={classes.formControl}>
++                               <InputLabel htmlFor="ciudad-input">Ciudad</InputLabel>
++                               <Input id="ciudad-input" value={ciudad} onChange={(e) => setCiudad(e.target.value)} aria-describedby="ciudad-legend" />
++                               <FormHelperText id="ciudad-legend">¿Que ciudad desea registrar?</FormHelperText>
++                           </FormControl>
++                       </Grid>
++
++                        <Grid item md={12}>
++                            <FormControl className={classes.formControl}>
++                                <InputLabel htmlFor="pais-input">País</InputLabel>
++                                <Select
++                                    id="pais-input"
++                                    value={pais}
++                                    onChange={(e) => setPais(e.target.value)}
++                                    displayEmpty
++                                    aria-describedby="pais-legend"
++                                >
++                                    <MenuItem value={null}><em>Ninguno</em></MenuItem>
++                                    <MenuItem value={"US"}>Estados Unidos</MenuItem>
++                                    <MenuItem value={"VE"}>Venezuela</MenuItem>
++                                    <MenuItem value={"MX"}>México</MenuItem>
++                                    <MenuItem value={"AR"}>Argentina</MenuItem>
++                                    <MenuItem value={"CO"}>Colombia</MenuItem>
++                                    <MenuItem value={"CR"}>Costa Rica</MenuItem>
++                                    <MenuItem value={"ES"}>España</MenuItem>
++                                    <MenuItem value={"PE"}>Perú</MenuItem>
++                                    <MenuItem value={"CL"}>Chile</MenuItem>
++                                    <MenuItem value={"CN"}>China</MenuItem>
++                                    <MenuItem value={"RU"}>Rusia</MenuItem>
++                                    <MenuItem value={"TW"}>Taiwan</MenuItem>
++                                </Select>
++                                <FormHelperText id="pais-legend">¿A que país pertenece esta ciudad?</FormHelperText>
++                            </FormControl>
++                        </Grid>
++                        <Grid item md={12}>
++                            <FormControl className={classes.formControl}>
++                                <InputLabel htmlFor="temperatura-input">Temperatura</InputLabel>
++                                <Input id="temperatura-input" value={temperatura} onChange={(e) => setTemperatura(parseFloat(e.target.value))} aria-describedby="temperatura-legend" type="number" />
++                                <FormHelperText id="temperatura-legend">Indique la temperatura a registrar</FormHelperText>
++                            </FormControl>
++                        </Grid>
++                        <Grid item md={12}>
++                            <FormControl className={classes.formControl}>
++                                <InputLabel htmlFor="humedad-input">Humedad</InputLabel>
++                                <Input id="humedad-input" value={humedad} onChange={(e) => setHumedad(parseFloat(e.target.value))} aria-describedby="humedad-legend" type="number" />
++                                <FormHelperText id="humedad-legend">Indique la humedad a registrar</FormHelperText>
++                            </FormControl>
++                        </Grid>
++                        <Grid item md={12}>
++                            <Button variant="contained" color="primary" onClick={handleSubmit}>
++                                Registrar
++                            </Button>
++                        </Grid>
++                    </Grid>
++                </Container>
++
++                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
++                    <Alert onClose={handleClose} severity="success">
++                        ¡Los datos han sido registrados satisfactoriamente!
++                    </Alert>
++                </Snackbar>
+             </div>
+     )
+ }
+Index: ucatolica/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"ucatolica\",\r\n  \"version\": \"0.1.0\",\r\n  \"private\": true,\r\n  \"dependencies\": {\r\n    \"@material-ui/core\": \"^4.11.4\",\r\n    \"@material-ui/data-grid\": \"^4.0.0-alpha.31\",\r\n    \"@material-ui/icons\": \"^4.11.2\",\r\n    \"@testing-library/jest-dom\": \"^5.13.0\",\r\n    \"@testing-library/react\": \"^11.2.7\",\r\n    \"@testing-library/user-event\": \"^12.8.3\",\r\n    \"chart.js\": \"^3.3.2\",\r\n    \"material-table\": \"^1.69.3\",\r\n    \"react\": \"^17.0.2\",\r\n    \"react-chartjs-2\": \"^3.0.3\",\r\n    \"react-dom\": \"^17.0.2\",\r\n    \"react-scripts\": \"4.0.3\",\r\n    \"web-vitals\": \"^1.1.2\"\r\n  },\r\n  \"scripts\": {\r\n    \"start\": \"react-scripts start\",\r\n    \"build\": \"react-scripts build\",\r\n    \"test\": \"react-scripts test\",\r\n    \"eject\": \"react-scripts eject\"\r\n  },\r\n  \"eslintConfig\": {\r\n    \"extends\": [\r\n      \"react-app\",\r\n      \"react-app/jest\"\r\n    ]\r\n  },\r\n  \"browserslist\": {\r\n    \"production\": [\r\n      \">0.2%\",\r\n      \"not dead\",\r\n      \"not op_mini all\"\r\n    ],\r\n    \"development\": [\r\n      \"last 1 chrome version\",\r\n      \"last 1 firefox version\",\r\n      \"last 1 safari version\"\r\n    ]\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ucatolica/package.json b/ucatolica/package.json
+--- a/ucatolica/package.json	(revision d4c81116eb5668d5d0803661f2be7734ecf1e413)
++++ b/ucatolica/package.json	(date 1623512523118)
+@@ -6,6 +6,7 @@
+     "@material-ui/core": "^4.11.4",
+     "@material-ui/data-grid": "^4.0.0-alpha.31",
+     "@material-ui/icons": "^4.11.2",
++    "@material-ui/lab": "^4.0.0-alpha.58",
+     "@testing-library/jest-dom": "^5.13.0",
+     "@testing-library/react": "^11.2.7",
+     "@testing-library/user-event": "^12.8.3",
+Index: ucatolica/package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ucatolica/package-lock.json b/ucatolica/package-lock.json
+--- a/ucatolica/package-lock.json	(revision d4c81116eb5668d5d0803661f2be7734ecf1e413)
++++ b/ucatolica/package-lock.json	(date 1623512523376)
+@@ -1880,6 +1880,18 @@
+         "@babel/runtime": "^7.4.4"
+       }
+     },
++    "@material-ui/lab": {
++      "version": "4.0.0-alpha.58",
++      "resolved": "https://registry.npmjs.org/@material-ui/lab/-/lab-4.0.0-alpha.58.tgz",
++      "integrity": "sha512-GKHlJqLxUeHH3L3dGQ48ZavYrqGOTXkFkiEiuYMAnAvXAZP4rhMIqeHOPXSUQan4Bd8QnafDcpovOSLnadDmKw==",
++      "requires": {
++        "@babel/runtime": "^7.4.4",
++        "@material-ui/utils": "^4.11.2",
++        "clsx": "^1.0.4",
++        "prop-types": "^15.7.2",
++        "react-is": "^16.8.0 || ^17.0.0"
++      }
++    },
+     "@material-ui/pickers": {
+       "version": "3.2.2",
+       "resolved": "https://registry.npmjs.org/@material-ui/pickers/-/pickers-3.2.2.tgz",
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"246ed114-d476-4b33-ad83-7ec96d42c59a\" name=\"Default Changelist\" comment=\"Correxión de formulario POST\">\r\n      <change afterPath=\"$PROJECT_DIR$/ucatolica/src/components/hitorico.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ucatolica/package-lock.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ucatolica/package-lock.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ucatolica/package.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ucatolica/package.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ucatolica/src/components/ciudades.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ucatolica/src/components/ciudades.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ucatolica/src/components/contenido.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ucatolica/src/components/contenido.jsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/ucatolica/src/components/temperaturahumedad.jsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/ucatolica/src/components/temperaturahumedad.jsx\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1tk0lMHXIC8870lXH0uLgpagKs4\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/ucatolica/package.json\" />\r\n    <property name=\"node.js.detected.package.eslint\" value=\"true\" />\r\n    <property name=\"node.js.selected.package.eslint\" value=\"(autodetect)\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"ts.external.directory.path\" value=\"C:\\Users\\emman\\AppData\\Local\\JetBrains\\Toolbox\\apps\\IDEA-U\\ch-0\\211.7442.40\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\workspace\\react\\ucatolica\\public\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/ucatolica/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"246ed114-d476-4b33-ad83-7ec96d42c59a\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1623297929947</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1623297929947</updated>\r\n      <workItem from=\"1623297935526\" duration=\"176000\" />\r\n      <workItem from=\"1623298252878\" duration=\"653000\" />\r\n      <workItem from=\"1623298998503\" duration=\"22330000\" />\r\n      <workItem from=\"1623388852982\" duration=\"8000\" />\r\n      <workItem from=\"1623388903182\" duration=\"84000\" />\r\n      <workItem from=\"1623447297259\" duration=\"205000\" />\r\n      <workItem from=\"1623447517676\" duration=\"25160000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Correxión de formulario POST\">\r\n      <created>1623479470577</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1623479470577</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Correxión de formulario POST\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Correxión de formulario POST\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d4c81116eb5668d5d0803661f2be7734ecf1e413)
++++ b/.idea/workspace.xml	(date 1623512413014)
+@@ -1,14 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="246ed114-d476-4b33-ad83-7ec96d42c59a" name="Default Changelist" comment="Correxión de formulario POST">
+-      <change afterPath="$PROJECT_DIR$/ucatolica/src/components/hitorico.jsx" afterDir="false" />
++    <list default="true" id="246ed114-d476-4b33-ad83-7ec96d42c59a" name="Default Changelist" comment="Se agrega tabla de historico de temperaturas">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ucatolica/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/package-lock.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ucatolica/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/package.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ucatolica/src/components/ciudades.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/src/components/ciudades.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ucatolica/src/components/contenido.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/src/components/contenido.jsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/ucatolica/src/components/temperaturahumedad.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/src/components/temperaturahumedad.jsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/ucatolica/src/components/create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/ucatolica/src/components/create.jsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -81,7 +76,7 @@
+       <workItem from="1623388852982" duration="8000" />
+       <workItem from="1623388903182" duration="84000" />
+       <workItem from="1623447297259" duration="205000" />
+-      <workItem from="1623447517676" duration="25160000" />
++      <workItem from="1623447517676" duration="31247000" />
+     </task>
+     <task id="LOCAL-00001" summary="Correxión de formulario POST">
+       <created>1623479470577</created>
+@@ -90,7 +85,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1623479470577</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="Se agrega tabla de historico de temperaturas">
++      <created>1623506324832</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1623506324832</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -109,6 +111,7 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Correxión de formulario POST" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Correxión de formulario POST" />
++    <MESSAGE value="Se agrega tabla de historico de temperaturas" />
++    <option name="LAST_COMMIT_MESSAGE" value="Se agrega tabla de historico de temperaturas" />
+   </component>
+ </project>
+\ No newline at end of file
