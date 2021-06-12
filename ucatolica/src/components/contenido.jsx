@@ -3,7 +3,6 @@ import {Container, Typography, makeStyles, Grid, Paper, Box} from "@material-ui/
 import Ciudades from "./ciudades"
 import Searchis from "./search";
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -32,7 +31,6 @@ const Contenido = () => {
                 </Box>
                 <Box m={10}>
                     <div className={classes.root}>
-
                         <Grid container spacing={2}>
                             <Grid item xs={4}>
                                 <Paper className={classes.paper}>

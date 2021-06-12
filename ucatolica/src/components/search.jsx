@@ -1,6 +1,5 @@
 import React , { Fragment, useState, useEffect } from 'react'
 
-import Header from './Header';
 import Formulario from './Formulario';
 import Clima from './Clima';
 import Error from './Error';
@@ -53,7 +52,6 @@ const Searchis = () => {
   componente = <Clima
                   resultado={resultado}
                 />
-
     return (
         <Fragment>
       <div className="contenedor-form">
