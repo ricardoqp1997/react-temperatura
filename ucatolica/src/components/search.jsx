@@ -14,7 +14,17 @@ const Searchis = () => {
     const [resultado, guardarResultado] = useState({});
     const [error, guardarError] = useState(false);
 
+    const [pais, setPais] = useState('');
+    const [temperatura, setTemperatura] = useState('');
+    const [humedad, setHumedad] = useState('');
+    const [isPendign, setIsPending] = useState(false);
+    const [open, setOpen] = React.useState(false);
+
     const { ciudad } = busqueda;
+
+    const handleSubmit = e => {
+
+    }
 
     useEffect(() => {
         const consultarApi = async () => {
@@ -51,9 +61,10 @@ const Searchis = () => {
           <div className="row">
             <div className="col m6 s12">
               <Formulario
-                busqueda={busqueda}
-                guardarBusqueda={guardarBusqueda}
-                guardarConsultar={guardarConsultar}
+                  resultado={resultado}
+                  busqueda={busqueda}
+                  guardarBusqueda={guardarBusqueda}
+                  guardarConsultar={guardarConsultar}
               />
             </div>
             <div className="col m6 s12">

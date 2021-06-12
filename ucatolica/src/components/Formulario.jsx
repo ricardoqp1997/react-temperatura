@@ -17,28 +17,69 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Formulario = ({busqueda, guardarBusqueda, guardarConsultar}) => {
+const Formulario = ({resultado, busqueda, guardarBusqueda, guardarConsultar}) => {
+
   const classes = useStyles();
   const [error, guardarError] = useState(false);
+
   const { ciudad } = busqueda;
+  const [pais, setPais] = useState('');
+  const [temperatura, setTemperatura] = useState('');
+  const [humedad, setHumedad] = useState('');
+  const [isPendign, setIsPending] = useState(false);
+
   const handleChange = e => {
     guardarBusqueda({
       ...busqueda,
       [e.target.name] : e.target.value
     })
   }
-  
 
   // cuando el usuario da submit al formulario
     const handleSubmit = e => {
-      e.preventDefault();
-      // validar 
-      if(ciudad.trim() === '') {
-        guardarError(true);
-        return;
-      }
-      guardarError(false);
-      guardarConsultar(true);
+        e.preventDefault();
+
+        // validar
+        if(ciudad.trim() === '') {
+              guardarError(true);
+              return;
+        }
+        guardarError(false);
+        guardarConsultar(true);
+
+        const { main, name } = resultado;
+
+        if(!name) return null;
+
+        const kelvin = 273.15;
+
+        console.log(resultado.sys.country) // Pais
+        console.log(ciudad) // ciudad
+        console.log(parseFloat(main.temp - kelvin, 10).toFixed()) // temperatura
+        console.log(parseFloat(main.humidity).toFixed()) // humedad
+
+        setPais(resultado.sys.country) // Pais
+        setTemperatura(parseFloat(main.temp - kelvin, 10).toFixed()) // temperatura
+        setHumedad(parseFloat(main.humidity).toFixed()) // humedad
+
+        console.log({resultado})
+
+        const nuevodato = {ciudad, pais, temperatura, humedad};
+        console.log(nuevodato)
+
+        setIsPending(true);
+
+        fetch('https://backend-temperatura.herokuapp.com/api/temperatura-humedad/', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json;charset=UTF-8"
+            },
+            body: JSON.stringify(nuevodato)
+
+        }). then(() => {
+            console.log('Nuevo registro agregado');
+            setIsPending(false);
+        })
 
     }
     

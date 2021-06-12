@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, FormControl, Input, InputLabel , FormHelperText, ValidatorForm, MenuItem, Select, Button, Grid, Snackbar } from '@material-ui/core';
-import MuiAlert from '@material-ui/lab/Alert';
 
 const Crear = () => {
 
@@ -12,10 +11,6 @@ const Crear = () => {
             minWidth: 240,
         },
     }));
-
-    function Alert(props) {
-        return <MuiAlert elevation={6} variant="filled" {...props} />;
-    }
 
     const classes = useStyles();
     const [age, setAge] = React.useState('');
@@ -31,7 +26,7 @@ const Crear = () => {
     const [isPendign, setIsPending] = useState(false);
     const [open, setOpen] = React.useState(false);
 
-    const handleSubmit =(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const nuevodato = {ciudad, pais, temperatura, humedad};
         console.log(nuevodato)
@@ -124,11 +119,6 @@ const Crear = () => {
                             <Button variant="contained" color="primary" onClick={handleSubmit}>
                                 Registrar
                             </Button>
-                            <Snackbar open={open} autoHideDuration={10000} onClose={handleClose}>
-                                <Alert onClose={handleClose} severity="success">
-                                    ¡Los datos han sido registrados satisfactoriamente!
-                                </Alert>
-                            </Snackbar>
                         </Grid>
                     </Grid>
                 </Container>
