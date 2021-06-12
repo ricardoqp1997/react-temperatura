@@ -44,33 +44,6 @@ const Contenido = () => {
                 </Box>
                 <Box m={10}>
                     <div className={classes.root}>
-                        <Grid container spacing={3}>
-                            <Grid item xs={4}>
-                                <Paper className={classes.paper}>
-                                    <Typography>
-                                        Hola Mundo
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <Paper className={classes.paper}>
-                                    <Typography>
-                                        Hola Mundo
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <Paper className={classes.paper}>
-                                    <Typography>
-                                        Hola Mundo
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    </div>
-                </Box>
-                <Box m={10}>
-                    <div className={classes.root}>
                         <Grid container spacing={9}>
                             <Grid item xs={9}>
                                 <Paper className={classes.paper}>
